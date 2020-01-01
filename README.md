@@ -1,4 +1,4 @@
-# game_server
+# pica_server
 Typescript 를 이용한 게임서버 / Intellij >> 만드는중
 
 ## 게임 내용
