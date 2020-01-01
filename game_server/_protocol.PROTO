@@ -1,0 +1,27 @@
+// awesome.proto
+package home.sessi0n.test;
+syntax = "proto3";
+
+
+enum ePACKETS {
+    REQ_MATCH       = 1001,
+    RES_MATCH       = 1002,
+
+
+    REQ_LOAD_BATTLE       = 1201,
+    RES_LOAD_BATTLE       = 1202,
+
+    RES_HUGE_PACKET       = 2000,
+}
+
+message RequestAwesomeMessage {
+    required E_PACKET e_index = 1;
+    required int i_index = 2; // inc
+    required string json_pack = 3;
+};
+
+message ResponseAwesomeMessage {
+    repeated E_PACKET e_index = 1;
+    repeated string json_pack = 2;
+};
+
