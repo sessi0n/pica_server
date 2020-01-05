@@ -1,0 +1,11 @@
+private_rusty: # 김관빈 개인 개발 서버 환경
+    end_point: 192.168.50.162
+    log:
+        level: 'debug'
+
+
+default:
+    log:
+        level: 'info'
+        path: '../../logs/'
+        file: 'match'

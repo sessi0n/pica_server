@@ -1,0 +1,6 @@
+
+enum eUnitType {
+    champ,
+    minion
+
+}

@@ -1,12 +1,13 @@
 {
-  "name": "match_server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "dmserver",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/dmserver"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "dependencies": {
+    "path": "^0.12.7",
+    "redis": "^2.8.0",
+    "yaml-config": "^0.3.0"
+  }
 }

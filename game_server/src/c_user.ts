@@ -1,6 +1,7 @@
 import net = require('net');
 import { cCard } from './c_card';
 import {cService} from "./mng_service";
+import {cUnit} from "./c_unit";
 
 declare const game_server : cService;
 
@@ -10,7 +11,9 @@ export class cUser {
     _my_champ_array_index : number; // room > _champ
 
     constructor(private _socket : net.Socket, private _uid : number) {
+
     }
+
 
     get_uid() {
         return this._uid;
