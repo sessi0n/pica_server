@@ -7,6 +7,7 @@
     "paths": {
 
     },
+
     "esModuleInterop": true,
     "moduleResolution": "node",
     "outDir": "build",
@@ -44,8 +45,12 @@
 
 //    "importHelpers": true // tslib에서 helpers (e.g. __extends, __rest, etc..)를 가져온다.
 
-    "lib": []
-  },
+    "lib": [
+//      "es5",
+//      "es2015.collection", // Map
+//      "es2018", "dom"
+    ]
+  }
 //  exclude : 설정안하면 4가지(node modlues, bower componets, jspm pacages, )를 default를 제외한다.
 
 }

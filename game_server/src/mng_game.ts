@@ -3,7 +3,7 @@ import { cUser } from './c_user';
 import { cRoom } from "./c_room";
 
 export class cGameMng {
-    private _user_data : Map<number, cUser>;
+    private _user_data : Map<string, cUser>;
     private _room_data : Map<string, cRoom>;
 
     constructor() {

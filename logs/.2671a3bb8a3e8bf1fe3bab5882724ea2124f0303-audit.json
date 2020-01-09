@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 20
+    },
+    "auditLog": "D:\\git\\pica_server\\logs\\.2671a3bb8a3e8bf1fe3bab5882724ea2124f0303-audit.json",
+    "files": [
+        {
+            "date": 1578580561933,
+            "name": "D:\\git\\pica_server\\logs\\pica_match.log.2020-01-09",
+            "hash": "b3f000056ccce735d84cb24c59c2acf9"
+        }
+    ]
+}

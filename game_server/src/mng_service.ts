@@ -2,7 +2,7 @@ import net = require('net');
 import { cGameMng } from './mng_game';
 import { proto_style, cPacketMng } from './mng_packet';
 
-const table = require('./mng_table');
+import * as table from 'src/mng_table';
 
 
 export class cService {

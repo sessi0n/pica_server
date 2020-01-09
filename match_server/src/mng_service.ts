@@ -2,11 +2,17 @@
 
 import {cManagerPool} from './mng_pool';
 import * as redis from 'redis'
-import * as yaml from 'yaml'
+import * as yaml from 'yaml-config'
 import * as fs from 'fs'
-import {ServerSetting} from "./constants/server_setting";
+import { FailLogger } from "./constants/logger";
 
-require('./constants/server_setting');
+
+
+type conf = {
+    log : { level : string, path: string, file: string};
+    end_point: string;
+    redis: {ip: string, port: number};
+};
 
 export class cMatchingSystem {
     _serverName: string;
@@ -14,9 +20,10 @@ export class cMatchingSystem {
     _matchType: string;
     _pool_manager: cManagerPool;
     _redis: object;
-    _conf: object;
+    _conf: conf;
     _env: string;
 
+    // public logger : FailLogger;
     public set_env(env:string):void { this._env = env; }
     
     private static _instance: cMatchingSystem;
@@ -25,12 +32,13 @@ export class cMatchingSystem {
     }
 
     async startMatchingServer() {
-        this.read_arg_and_env()
-        this.read_config_file()
+        await this.read_arg()
+            .then(() => this.read_env())
+            .then(() => this.read_config_file())
             .then(() => this.connectRedis())
             .then(() => {
-                if (this._matchType === ServerSetting.LOAD_TYPE_NORMAL) {
-                    this._pool_manager = new cManagerPool(ServerSetting.LOAD_TYPE_NORMAL);
+                if (this._matchType === LOAD_TYPE_NORMAL) {
+                    this._pool_manager = new cManagerPool(LOAD_TYPE_NORMAL);
                 } else {
                     return console.log('[initMatchingServer] ERROR: no server type');
                 }
@@ -54,25 +62,57 @@ export class cMatchingSystem {
         });
     }
 
-    read_arg_and_env() {
-        console.log('0: ' +process.argv[2]);
-        console.log('1: ' + process.argv[3]);
+    read_arg() {
+        return new Promise((resolve, reject) => {
+            console.log('0: ' +process.argv[2]);
+            console.log('1: ' + process.argv[3]);
+
+            this._matchType = process.argv[2];
+
+            return resolve();
+        });
+    }
+
+    read_env() {
+        return new Promise((resolve, reject) => {
+            if (process.env['SERVICE_ENV'] == null) {
+                return reject('setting your environment');
+            }
+
+
+            this.set_env(process.env['SERVICE_ENV']);
+            console.log(this._env);
+
+
+            return resolve();
+        });
     }
 
     read_config_file() {
         return new Promise<void>((resolve, reject) => {
-            console.log(ServerSetting.FILE_PATH_CONF);
-            const file = fs.readFileSync(ServerSetting.FILE_PATH_CONF, 'utf8');
-            this._conf = (yaml.parse(file))[this._env];
+            // console.log(ServerSetting.FILE_PATH_CONF);
+            // const file = fs.readFileSync(ServerSetting.FILE_PATH_CONF, 'utf8');
+            this._conf = yaml.readConfig(FILE_PATH_CONF, this._env);
+            // this._conf = this._conf[this._env] + this._conf['default'];
 
+            console.log(this._conf);
 
             if (this._conf == null)
-                return reject();
+                return reject('invalid configure');
 
+            if (this._conf['log'] == null)
+                return reject('invalid log configure');
 
+            let logger_instance = new FailLogger();
+            logger = logger_instance.init(
+                this._conf.log.level,
+                __dirname +this._conf.log.path,
+                this._conf.log.file);
 
             return resolve();
         })
     }
 
 }
+
+
