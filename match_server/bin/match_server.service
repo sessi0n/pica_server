@@ -1,0 +1,16 @@
+[Unit]
+Description=Match Server
+
+[Service]
+ExecStart=/usr/bin/forever --minUptime 1000 --spinSleepTime 1000 /home/sessi0n/match_server/main normal 00
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=match_server
+User=sessi0n
+Group=sessi0n
+Environment="NODE_ENV=production"
+Environment="SERVICE_ENV=rusty"
+
+[Install]
+WantedBy=multi-user.target

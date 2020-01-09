@@ -1,13 +1,25 @@
 {
-  "name": "dmserver",
+  "name": "match_server",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/dmserver"
+    "start": "ts-node src/main.ts",
+    "build": "tsc src/main.ts",
+    "check": "tsc"
   },
   "dependencies": {
-    "path": "^0.12.7",
+    "module-alias": "^2.2.2",
+    "node": "^13.5.0",
     "redis": "^2.8.0",
-    "yaml-config": "^0.3.0"
+    "yaml": "^1.7.2"
+  },
+  "devDependencies": {
+    "@types/module-alias": "^2.0.0",
+    "@types/node": "^13.1.4",
+    "@types/redis": "^2.8.14",
+    "@types/yaml": "^1.2.0"
+  },
+  "_moduleAliases": {
+    "src": "build"
   }
 }
