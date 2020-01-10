@@ -1,6 +1,4 @@
 'use strict';
-import {FailLogger} from "./constants/logger";
-
 require('module-alias/register');
 require('./constants/variable_setting');
 import {cMatchingSystem} from "src/mng_service";

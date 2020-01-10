@@ -1,6 +1,5 @@
 
-enum eUnitType {
-    champ,
-    minion
-
-}
+type eUnitType ={
+    champ: 0,
+    minion: 1
+};

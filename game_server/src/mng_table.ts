@@ -1,5 +1,5 @@
 
-import * as Type from './define_type';
+import * as Type from './constants/define_type';
 
 class cTableMng<T> {
     // private static _instance : any;
