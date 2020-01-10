@@ -10,3 +10,10 @@ LOAD_TYPE_FRIEND = 'friend';
 FILE_PATH_CONF = __dirname + '/../../conf/conf.yaml';
 
 logger = {};
+redisClient = {};
+
+sleep = function (ms:number) {
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, ms);
+    });
+}

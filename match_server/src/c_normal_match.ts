@@ -1,12 +1,24 @@
 import {cMatch} from "./c_match";
 
 
-export class cNormalMatch implements cMatch{
+export class cNormalMatch extends cMatch{
+    constructor() {
+        super();
+        console.log('created cNormalMatch');
+    }
 
-    workerPool() {
-        let start = +new Date();
+    matchUsers(){
+        return new Promise(async (resolve, reject) => {
+            let start = +new Date();
 
+            await sleep(1000);
 
-        let end = +new Date();
+            let end = +new Date();
+
+            return resolve((end-start));
+        });
      }
+
+
+
 }

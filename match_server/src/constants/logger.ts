@@ -12,7 +12,7 @@ export class FailLogger {
     //     return this._instance || (this._instance = new this());
     // }
 
-    init(level:string, path:string, file:string) {
+    init(level:string, path:string, file:string) : any {
 
         let opt_create : any = {
             level: level,
@@ -21,7 +21,8 @@ export class FailLogger {
                     let prefix = util.format('[%s] [%s]', moment().format('YYYY-MM-DD hh:mm:ss').trim(), info.level.toUpperCase());
                     if (info.splat) {
                         info.message = util.format('%s %s', prefix, util.format(info.message, ...info.splat));
-                    } else {
+                    }
+                    else {
                         info.message = util.format('%s %s', prefix, info.message);
                     }
                     return info;

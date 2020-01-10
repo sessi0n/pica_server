@@ -15,7 +15,26 @@ export class cManagerPool {
     }
 
 
-    startPool() {
-        this._matchInstance.workerPool();
+    async workerPool() {
+        while(true) {
+            let delay = 1000; //ms
+            await this._matchInstance.matchUsers()
+                .then((workTime) => this.delayWorker(delay, workTime))
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
     }
+
+    delayWorker(delay:number, workTime:number) {
+        return new Promise(async (resolve, reject) => {
+            console.log('time spend: ' + workTime);
+
+            if(workTime > 0 && delay - workTime > 0)
+                await sleep(delay - workTime);
+
+            resolve();
+        });
+    }
+
 }

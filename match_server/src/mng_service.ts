@@ -1,11 +1,9 @@
 'use strict';
 
 import {cManagerPool} from './mng_pool';
-import * as redis from 'redis'
 import * as yaml from 'yaml-config'
-import * as fs from 'fs'
 import { FailLogger } from "./constants/logger";
-
+import { Redis } from "./constants/redis";
 
 
 type conf = {
@@ -43,24 +41,12 @@ export class cMatchingSystem {
                     return console.log('[initMatchingServer] ERROR: no server type');
                 }
 
-                this._pool_manager.startPool();
+                this._pool_manager.workerPool();
 
             })
             .catch((err) => console.log(err));
 
    }
-
-    connectRedis() {
-        return new Promise<void>(async (resolve, reject) => {
-
-
-
-            // let client = redis.createClient('', '', '');
-
-
-            resolve();
-        });
-    }
 
     read_arg() {
         return new Promise((resolve, reject) => {
@@ -90,17 +76,14 @@ export class cMatchingSystem {
 
     read_config_file() {
         return new Promise<void>((resolve, reject) => {
-            // console.log(ServerSetting.FILE_PATH_CONF);
-            // const file = fs.readFileSync(ServerSetting.FILE_PATH_CONF, 'utf8');
             this._conf = yaml.readConfig(FILE_PATH_CONF, this._env);
-            // this._conf = this._conf[this._env] + this._conf['default'];
 
             console.log(this._conf);
 
             if (this._conf == null)
                 return reject('invalid configure');
 
-            if (this._conf['log'] == null)
+            if (this._conf.log == null)
                 return reject('invalid log configure');
 
             let logger_instance = new FailLogger();
@@ -113,6 +96,22 @@ export class cMatchingSystem {
         })
     }
 
+    connectRedis() {
+        return new Promise<void>(async (resolve, reject) => {
+
+            if (this._conf.redis == null)
+                return reject('not set redis in conf');
+
+            redisClient = await (new Redis()).init(this._conf.redis.ip, this._conf.redis.port);
+
+            if (!redisClient.connected)
+                return reject('cannot connect redis');
+            else
+                console.log('connect redis: %s, %d', this._conf.redis.ip, this._conf.redis.port);
+
+            resolve();
+        });
+    }
 }
 
 

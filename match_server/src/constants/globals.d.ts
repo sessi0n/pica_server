@@ -9,3 +9,7 @@ declare var DEFAULT_RANK_AI_MATCH_COUNT : number;
 
 declare var FILE_PATH_CONF : string;
 declare var logger: any;
+declare var redisClient: any;
+
+declare var sleep:(ms:number)=> any;
+

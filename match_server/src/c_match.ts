@@ -1,4 +1,7 @@
 
 export abstract class cMatch{
-    abstract workerPool();
+    protected constructor() {
+
+    }
+    abstract matchUsers() : any;
 }

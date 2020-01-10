@@ -17,7 +17,8 @@
     "yaml-config": "^0.3.0"
   },
   "devDependencies": {
-    "@types/node": "^13.1.6"
+    "@types/node": "^13.1.6",
+    "@types/redis": "^2.8.14"
   },
   "_moduleAliases": {
     "src": "build"
