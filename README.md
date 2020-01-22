@@ -9,7 +9,7 @@ Typescript>nodejs 를 이용한 게임서버 / Intellij >> 만드는중
 - 인게임 > protobuf 사용. 유저 2명을 방에 두고 소켓 통신, 서버간 통신 > Redis-publish
 - 매칭 > Redis 연동 Pool 구조 (+대기열 구현과 비슷)
 - AI > 미정
-- 웹 > 미정
+- 웹 > express, protobuf 사용.> push msg를 rabbitmq(message queue) 이용
 
 
 ### 실행방법
