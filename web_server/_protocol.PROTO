@@ -1,23 +1,18 @@
 // awesome.proto
 syntax = "proto2";
 
-package home.picka.game;
-
+package home.picka.web;
 
 enum ePACKETS {
-    REQ_MATCH       = 1001;
-    RES_MATCH       = 1002;
+    REQ_LOGIN       = 1001;
+    RES_LOGIN       = 1002;
 
 
-    REQ_LOAD_BATTLE       = 1201;
-    RES_LOAD_BATTLE       = 1202;
-
-    RES_HUGE_PACKET       = 2000;
 }
 
 message RequestAwesomeMessage {
     required ePACKETS e_index = 1;
-    required int i_index = 2; // inc
+    optional int32 i_index = 2; // inc
     required string json_pack = 3;
 };
 

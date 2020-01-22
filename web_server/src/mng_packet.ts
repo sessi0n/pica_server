@@ -22,27 +22,27 @@ type custom_style = {
 }
 
 export class cPacketMng {
-    private trans_files : any = require('./mng_packet_files');
+    private trans_files : any = require('./mng_route_files');
     private protocol_path : string = '../_protocol.PROTO';
     private root : any;
 
     constructor() {
-        this.load_protobuf(this.protocol_path)
+        this.load_proof(this.protocol_path)
             .catch((err) => {});
     }
 
-    load_protobuf(protocol_path:string) {
+    load_proof(protocol_path : string) {
         return new Promise((resolve, reject) => {
             load(this.protocol_path)
                 .then((root) => this.root = root )
-                .catch((err:Error) => {
+                .catch((err : Error) => {
 
                 })
         });
     }
 
-    get_proto_style(data : Buffer) : proto_style {
-        let AwesomeMessage = this.root.lookupType("home.sessi0n.test.RequestAwesomeMessage");
+    get_proto_message(data : Buffer) : proto_style {
+        let AwesomeMessage = this.root.lookupType("home.picka.web.RequestAwesomeMessage");
 
         let message = AwesomeMessage.decode(data);
 
@@ -75,7 +75,7 @@ export class cPacketMng {
         return this.trans_files[e_index.toString()];
     }
 
-    get_awesome_message(send_obj : JSON) : Promise<Uint8Array> {
+    get_awesome_message(send_obj : JSON) {
         return new Promise((resolve, reject) => {
             let AwesomeMessage = this.root.lookup('ResponseAwesomeMessage');
 
@@ -85,7 +85,7 @@ export class cPacketMng {
             }
 
             let message = AwesomeMessage.create(send_obj);
-            let buffer : Uint8Array = AwesomeMessage.encode(message).finish();
+            let buffer = AwesomeMessage.encode(message).finish();
 
             resolve(buffer);
         })

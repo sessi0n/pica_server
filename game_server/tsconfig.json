@@ -19,7 +19,7 @@
     "pretty": true, // 에러 메시지를 예쁘게 설정
     "locale": "ko", // 에러메세지 출력 언어 설정
 
-    //    "strict": true, // 모든 엄격한 타입 검사 옵션을 활성화
+    "strict": true, // 모든 엄격한 타입 검사 옵션을 활성화
     //    "allowUnreachableCode": false, // 도달 불가능한 코드에 대한 허용 여부.
     //    "allowUnusedLabels": false, // 사용하지 않는 라벨에 대한 허용 여부
     //    "noFallthroughCasesInSwitch": true, // 잘못 적혔다고 판단되는 switch문에 대한 에러 발생

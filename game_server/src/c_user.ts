@@ -6,9 +6,9 @@ import {cUnit} from "./c_unit";
 declare const game_server : cService;
 
 export class cUser {
-    _deck: Array<cCard>;
-    _room_key : string;
-    _my_champ_array_index : number; // room > _champ
+    // _deck: Array<cCard>;
+    // _room_key : string;
+    // _my_champ_array_index : number; // room > _champ
 
     constructor(private _socket : net.Socket, private _uid : number) {
 
