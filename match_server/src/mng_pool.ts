@@ -3,7 +3,7 @@ import {cFriendMatch} from './c_friend_match';
 import {cMatch} from "./c_match";
 
 export class cManagerPool {
-    _matchInstance : cMatch;
+    _matchInstance !: cMatch;
 
     constructor(_type : string) {
         if (_type === LOAD_TYPE_NORMAL)
@@ -19,8 +19,8 @@ export class cManagerPool {
         while(true) {
             let delay = 1000; //ms
             await this._matchInstance.matchUsers()
-                .then((workTime) => this.delayWorker(delay, workTime))
-                .catch((err) => {
+                .then((workTime:number) => this.delayWorker(delay, workTime))
+                .catch((err:Error) => {
                     console.log(err);
                 })
         }

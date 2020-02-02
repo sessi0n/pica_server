@@ -21,12 +21,15 @@ export class cGameMng {
     private  add_room(rkey: string, room: cRoom) {
         this._room_data.set(rkey, room);
     }
-    private del_room(rkey: string) {
+    private del_room(rkey: string) : void{
         this._room_data.delete(rkey);
     }
 
-    public clear_room(rkey) {
-        let room = this._room_data.get(rkey);
+    public clear_room(rkey : string) : void{
+        let room : cRoom | undefined = this.get_room(rkey);
+        if (!room)
+            return;
+
         let users = room.clear_room();
 
         this.del_room(rkey);
@@ -35,11 +38,11 @@ export class cGameMng {
         }
     }
 
-    public get_room(rkey) {
+    public get_room(rkey: string) {
         return this._room_data.get(rkey);
     }
 
-    public get_user(uid) {
+    public get_user(uid: number) {
         return this._user_data.get(uid);
     }
 }

@@ -1,7 +1,8 @@
 'use strict';
 
 import {cManagerPool} from './mng_pool';
-import * as yaml from 'yaml-config'
+// import * as yaml from 'yaml-config'
+const yaml = require('yaml-config');
 import { FailLogger } from "./constants/logger";
 import { Redis } from "./constants/redis";
 
@@ -13,13 +14,13 @@ type conf = {
 };
 
 export class cMatchingSystem {
-    _serverName: string;
-    _serverPort: number;
-    _matchType: string;
-    _pool_manager: cManagerPool;
-    _redis: object;
-    _conf: conf;
-    _env: string;
+    _serverName!: string;
+    _serverPort!: number;
+    _matchType!: string;
+    _pool_manager!: cManagerPool;
+    _redis!: object;
+    _conf!: conf;
+    _env!: string;
 
     // public logger : FailLogger;
     public set_env(env:string):void { this._env = env; }

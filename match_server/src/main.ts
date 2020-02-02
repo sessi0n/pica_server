@@ -1,12 +1,12 @@
 'use strict';
 require('module-alias/register');
-require('./constants/variable_setting');
+require('./constants/globals');
 import {cMatchingSystem} from "src/mng_service";
 
 let server = cMatchingSystem.instance;
 
 server.startMatchingServer()
     .then(() => {
-        logger.debug('12312312312');
+        logger.debug('test log');
     })
     .catch((err) => console.log(err));

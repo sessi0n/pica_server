@@ -14,18 +14,24 @@ class App {
     private readonly _routes : any;
     private _proto : cPacketMng;
 
-    public static bootstrap (): App {
-        return new App();
+    private static _instance: App;
+    public static get instance(): App {
+        return this._instance || (this._instance = new this());
     }
+
+    // public static bootstrap (): App {
+    //     return new App();
+    // }
 
     constructor () {
         this.app = express();
         this._proto = new cPacketMng();
-        this._routes = require('mng_route_files');
+        this._routes = require('./mng_route_files');
         this.app.use([this.pre_route, this.mid_route, this.fin_route]);
     }
 
     pre_route(req: express.Request, res: express.Response, next: express.NextFunction) {
+        console.log('pre_route');
         let data : Buffer[];
         let self = this;
 
@@ -42,11 +48,18 @@ class App {
         });
     }
     mid_route(req: express.Request, res: express.Response, next: express.NextFunction) {
+        console.log('mid_route');
         let fn : any = this._routes[req.tenant ? req.tenant.e_index : 0];
-        fn.call(this, null, req.tenant ? req.tenant.json_pack : null);
-        next();
+        if (fn)
+            fn.call(this, null, req.tenant ? req.tenant.json_pack : null)
+                .then(() => next())
+                .catch((err: Error) => {
+
+                });
+
     }
     fin_route(req: express.Request, res: express.Response, next: express.NextFunction) {
+        console.log('fin_route');
         res.send('Hello world');
     }
 }

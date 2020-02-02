@@ -16,7 +16,7 @@ class cTableMng<T> {
         this.data.set(tid, data);
     }
 
-    get_data(tid: number) : T {
+    get_data(tid: number) : T | undefined {
         return this.data.get(tid);
     }
 

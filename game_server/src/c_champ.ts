@@ -6,5 +6,6 @@ export class cChamp extends cUnit{
     }
 
     setHp() {
+        return this._hp;
     }
 }

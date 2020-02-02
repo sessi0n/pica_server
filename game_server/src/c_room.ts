@@ -16,9 +16,11 @@ export class cRoom {
     _champ : Array<cChamp>;
     _minion : Array<cMinion>;
 
-    constructor(max_user_cnt, max_cell_cnt) {
+    constructor(max_user_cnt : number, max_cell_cnt: number) {
         this._users = new Array(max_user_cnt);
         this._cell = new Array(max_cell_cnt);
+        this._champ = new Array(2);
+        this._minion = [];
     }
 
     clear_room() {

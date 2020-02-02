@@ -1,6 +1,6 @@
 'use strict';
 require('module-alias/register');
-require('src/constants/operator_value');
+require('src/constants/globlas');
 
 import { cService } from 'src/mng_service';
 
