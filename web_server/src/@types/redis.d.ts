@@ -1,0 +1,3 @@
+interface iTest {
+  test: number,
+}

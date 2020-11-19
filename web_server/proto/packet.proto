@@ -1,0 +1,17 @@
+syntax = "proto3";
+package home.picka.web;
+option java_multiple_files = true;
+
+import "packet_def.proto";
+
+message CTest {
+  opOBJECT test = 1;
+}
+message STest {
+  repeated opOBJECT test = 2;
+}
+
+message SError {
+  int64 id = 1;
+  string msg = 2;
+}
