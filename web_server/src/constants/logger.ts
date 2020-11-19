@@ -1,73 +1,69 @@
+// import {LoggerOptions} from "winston";
+
 const winston = require('winston');
-require('winston-daily-rotate-file');
-// const moment = require('moment');
-// const util = require('util');
-// const MESSAGE = Symbol.for('message');
+const DailyRotateFile = require('winston-daily-rotate-file');
+const moment = require('moment');
+const util = require('util');
+const MESSAGE = Symbol.for('message');
 
-class Logger {
-    private static _instance: Logger;
-    public static get instance(): Logger {
-        return this._instance || (this._instance = new this());
-    }
+export class FailLogger {
+    // private static _instance: FailLogger;
+    // public static get instance(): FailLogger {
+    //     return this._instance || (this._instance = new this());
+    // }
 
-    logger: any;
+    init(level:string, path:string, file:string) : any {
 
-    init(level: string, path: string, file: string): any {
-        // console.log(path);
-        let filename = file + '_%DATE%.log';
-        let transport = new (winston.transports.DailyRotateFile)({
-            dirname: path,
-            filename: filename,
-            datePattern: 'YYYY-MM-DD',
-            zippedArchive: true,
-            maxSize: '20m',
-            maxFiles: '14d'
-        });
-        transport.on('rotate', function (oldFilename: string, newFilename: string) {
-            // do something fun
-        });
-
-        let optCreate: any = {
+        let opt_create : any = {
             level: level,
             format: winston.format.combine(
-                winston.format.timestamp({format: 'YYYY-MM-DD HH:mm:ss'}),
-                // winston.format.colorize({all: true}),
-                winston.format.simple(),
-                winston.format.align(),
-                winston.format.splat(),
-                winston.format.printf((info: any) => {
-                    const {timestamp, level, message, ...extra} = info;
-
-                    return `${timestamp} [${level}]${message} ${
-                        Object.keys(extra).length ? JSON.stringify(extra, null, 2) : ''
-                    }`;
-                }),
+                winston.format(function(info:any, opts:any) {
+                    let prefix = util.format('[%s] [%s]', moment().format('YYYY-MM-DD hh:mm:ss').trim(), info.level.toUpperCase());
+                    if (info.splat) {
+                        info.message = util.format('%s %s', prefix, util.format(info.message, ...info.splat));
+                    }
+                    else {
+                        info.message = util.format('%s %s', prefix, info.message);
+                    }
+                    return info;
+                })(),
+                winston.format(function(info:any) {
+                    info[MESSAGE] = info.message + ' ' + JSON.stringify(
+                        Object.assign({}, info, {
+                            level: undefined,
+                            message: undefined,
+                            splat: undefined
+                        })
+                    );
+                    return info;
+                })()
             ),
             transports: [
-                transport,
-                new winston.transports.Console({debugStdout: true, format: winston.format.colorize({all: true})})
-                // .winston.format.colorize({all: true}),
+                new winston.transports.Console({debugStdout: true})
                 // new winston.transports.File({ dirname: this._path, filename: this._file })
             ]
         };
-        this.logger = winston.createLogger(optCreate);
+        let log = winston.createLogger(opt_create);
+        let opt_configure : any = {
+            level: level,
+            transports: [
+                new DailyRotateFile({
+                    name: 'file2',
+                    level: 'debug',
+                    dirname: path,
+                    filename: file,
+                    datePattern: 'YYYY-MM-DD',
+                    json: false,
+                    maxsize: 10485760, //5MB
+                    maxFiles: 20
+                })
+            ]
+        };
+        log.configure(opt_configure);
 
-        return this.logger;
-    }
+        log.debug('logger start');
+        log.debug('logger start');
 
-    info(message?: any, ...optionalParams: any[]) {
-        return this.logger.info(message, ...optionalParams);
-    }
-    debug(message?: any, ...optionalParams: any[]) {
-        return this.logger.debug(message, ...optionalParams);
-    }
-    error(message?: any, ...optionalParams: any[]) {
-        return this.logger.error(message, ...optionalParams);
-    }
-    warn(message?: any, ...optionalParams: any[]) {
-        return this.logger.warn(message, ...optionalParams);
+        return log;
     }
 }
-
-
-export const logger = Logger.instance;

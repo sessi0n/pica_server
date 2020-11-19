@@ -1,3 +1,0 @@
-interface iTest {
-  test: number,
-}

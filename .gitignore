@@ -40,6 +40,3 @@ lib/generated_plugin_registrant.dart
 /node_modules/
 
 
-/web_server/node_modules/
-/web_server/proto/src/
-/package-lock.json
