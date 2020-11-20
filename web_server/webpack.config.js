@@ -29,9 +29,9 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [
         {from: 'proto/packet.proto', to: 'proto/packet.proto'}, //logManager 에서 .proto 를 직접 사용
+        {from: 'proto/packet_def.proto', to: 'proto/packet_def.proto'}, //logManager 에서 .proto 를 직접 사용
         {from: 'proto/enum', to: 'proto/enum'},
         {from: 'conf', to: 'conf'},
-        {from: 'db_sql', to: 'db_sql'},
       ]
     }),
   ]
