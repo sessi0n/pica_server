@@ -1,0 +1,7 @@
+syntax = "proto3";
+package home.picka.web;
+
+enum epRESULT {
+  NONE = 0;
+  PARAMETER_ERROR = 1;
+}

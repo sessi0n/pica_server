@@ -21,3 +21,6 @@ Typescript>nodejs 를 이용한 게임서버 / Intellij >> 만드는중
  - 0X : 물리적1대 서버에 10개 모듈을 띄움 
  - X0 : 물리적으로 다르게 10개 서버들에 분할할 수 있도록 구조
  
+### intellij 에서 ts-node 로 실행시키는 세팅
+![hiworks_20201119_8521](https://user-images.githubusercontent.com/3241893/99648225-21797100-2a96-11eb-9f83-915f420e5b79.png)
+
