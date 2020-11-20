@@ -1,5 +1,5 @@
 const request = require('supertest');
-import App from '../src/App';
+import App from '../src/app';
 
 describe('Test the root path', () => {
     test('It should response the GET method', async (done) => {

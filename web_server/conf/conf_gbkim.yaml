@@ -1,0 +1,15 @@
+
+default:
+  proto:
+    packet: '../proto/packet.proto'
+  history:
+    path: '../history/'
+  log:
+    level: 'debug'
+    path: '../logs/'
+    file: 'pica'
+    db_log: false
+  developer:
+    - ip: 172.20.40.96
+    - ip: 172.20.40.97
+    - ip: 58.229.37.194

@@ -1,5 +1,6 @@
-import {cUser} from "../class/c_user";
+import {User} from "../user";
 
-module.exports = async function (user : cUser, data : string) {
+module.exports = async function (packet: Uint8Array, user: User) {
+
 
 };
