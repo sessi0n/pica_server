@@ -22,7 +22,7 @@ type custom_style = {
 }
 
 export class cPacketMng {
-    private trans_files : any = require('./mng_route_files');
+    private trans_files : any = require('./route_files');
     private protocol_path : string = '../_protocol.PROTO';
     private root : any;
 

@@ -26,7 +26,7 @@ class App {
     constructor () {
         this.app = express();
         this._proto = new cPacketMng();
-        this._routes = require('./mng_route_files');
+        this._routes = require('./route_files');
         this.app.use([this.pre_route, this.mid_route, this.fin_route]);
     }
 

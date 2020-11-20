@@ -3,15 +3,35 @@ package home.picka.web;
 option java_multiple_files = true;
 
 import "packet_def.proto";
-
-message CTest {
-  opOBJECT test = 1;
-}
-message STest {
-  repeated opOBJECT test = 2;
-}
+import "enum/error.proto";
+import "enum/platform.proto";
+import "enum/login_type.proto";
 
 message SError {
-  int64 id = 1;
+  eERROR id = 1;
   string msg = 2;
 }
+
+message CRegister {
+  string nickname = 1;
+}
+message SRegister {
+  uint64 uid = 1;
+  string id = 2;
+  uint64 server_time = 3;
+}
+
+message CLogin {
+  string id = 1;
+  ePLATFORM platform = 2;
+  eLOGIN_TYPE login_type = 3;
+  string social_id = 4;
+  string device = 5;
+}
+message SLogin {
+  uint64 uid = 2;
+  string sst = 3;
+  string nickname = 4;
+  uint64 server_time = 5;
+}
+

@@ -1,0 +1,8 @@
+syntax = "proto3";
+package home.picka.web;
+
+enum eLOGIN_TYPE {
+  GUEST = 0;
+  GOOGLE = 1;
+  GAME_CENTER = 2;
+}

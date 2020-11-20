@@ -29,7 +29,7 @@ if (cluster.isMaster) {
     http.createServer((req:any, res:any) => {
         res.writeHead(200);
         res.end('hello world\n');
-    }).listen(8000);
+    }).listen(port);
 
     console.log(`Worker ${process.pid} started`);
 }

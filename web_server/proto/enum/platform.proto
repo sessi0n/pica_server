@@ -1,0 +1,8 @@
+syntax = "proto3";
+package home.picka.web;
+
+enum ePLATFORM {
+  UNITY = 0;
+  AND = 1;
+  IOS = 2;
+}

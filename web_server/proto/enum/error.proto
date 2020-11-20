@@ -1,0 +1,8 @@
+syntax = "proto3";
+package home.picka.web;
+
+enum eERROR {
+  UNKNOWN = 0;
+  SESSION = 1;
+  PARAMETER = 2;
+}
