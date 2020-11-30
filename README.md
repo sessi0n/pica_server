@@ -24,3 +24,8 @@ Typescript>nodejs 를 이용한 게임서버 / Intellij >> 만드는중
 ### intellij 에서 ts-node 로 실행시키는 세팅
 ![hiworks_20201119_8521](https://user-images.githubusercontent.com/3241893/99648225-21797100-2a96-11eb-9f83-915f420e5b79.png)
 
+### global install in local for intellij
+ - npm i -g google-protobuf
+ - npm i -g protoc-gen-ts
+ - npm i -g typescript
+ 

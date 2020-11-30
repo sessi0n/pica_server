@@ -44,3 +44,4 @@ lib/generated_plugin_registrant.dart
 /web_server/proto/src/
 /package-lock.json
 /web_server/logs/
+/web_server/build/
